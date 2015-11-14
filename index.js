@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 'use strict';
 
 var fs = require('fs');
@@ -53,7 +55,7 @@ if (res.length > 0) {
     output: process.stdout
   });
 
-  rl.question('It is ok? [Y/n] ', function(answer) {
+  rl.question('Is it ok? [Y/n] ', function(answer) {
     answer = answer === '' || answer === 'Y' ? 'Y' : 'n';
     rl.close();
     if (answer === 'Y') {
