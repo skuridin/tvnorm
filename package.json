@@ -1,6 +1,25 @@
 {
-  "private": true,
-  "bin": { "tvnorm": "./index.js" },
+  "name": "tvnorm",
+  "version": "0.0.1",
+  "description": "Normalize episodes filenames",
+  "keywords": ["cli", "batch", "rename", "files", "tv-shows"],
+  "author": {
+    "name": "Evgeniy Skuridin",
+    "email": "i@skurid.in",
+    "url": "https://skurid.in/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:skuridin/tvnorm.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "email": "i@skurid.in",
+    "url": "https://github.com/skuridin/tvnorm/issues"
+  },
+  "files": ["index.js"],
+  "main": "index.js",
+  "bin": { "tvnorm": "index.js" },
   "dependencies": {
     "colors": "^1.1.2"
   }
