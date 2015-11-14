@@ -1,0 +1,7 @@
+{
+  "private": true,
+  "bin": { "tvnorm": "./index.js" },
+  "dependencies": {
+    "colors": "^1.1.2"
+  }
+}
