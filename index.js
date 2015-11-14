@@ -50,6 +50,9 @@ function answer(str) {
   var letter = str === '' || str === 'Y' ? 'Y' : 'n';
   if (letter === 'Y') {
     res.forEach(rename);
+    console.log('Completed')
+  } else {
+    console.log('Nothing changed')
   }
   rl.close();
 }
@@ -66,7 +69,7 @@ if (res.length > 0) {
     output: process.stdout
   });
   res.forEach(prinResult);
-  rl.question('Is it ok? [Y/n] ', answer);
+  rl.question('\nIs it ok? [Y/n] ', answer);
 } else {
   console.log('This dir does not contains any episodes');
 }
