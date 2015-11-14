@@ -17,8 +17,8 @@ if (!fs.statSync(cwd).isDirectory()) {
 files = fs.readdirSync(cwd);
 
 function pad(num, size) {
-  var s = num+"";
-  while (s.length < size) s = "0" + s;
+  var s = num + '';
+  while (s.length < size) s = '0' + s;
   return s;
 }
 
