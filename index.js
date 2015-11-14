@@ -1,24 +1,29 @@
 #!/usr/bin/env node
 
-'use strict';
-
 var fs = require('fs');
 var path = require('path');
 var readline = require('readline');
+var cwd = process.argv[2] ? path.resolve(process.argv[2]) : __dirname;
+var files;
+var res;
+var rl;
 require('colors');
 
-var cwd = process.argv[2] ? path.resolve(process.argv[2]) : __dirname;
-fs.statSync(cwd).isDirectory();
-var files = fs.readdirSync(cwd);
+if (!fs.statSync(cwd).isDirectory()) {
+  console.log('Dir not found');
+  process.exit(1);
+}
+
+files = fs.readdirSync(cwd);
 
 function filterMedia(file) {
   return file.toLowerCase().match(/\.(avi|mp4|mkv|mov|flv|wmv)$/);
 }
 
 function extract(file) {
-  var match = file.match(/[s|S]+(\d+).*[e|E]+(\d+)/);
+  var match = file.match(/[s|S]{1}(\d+).*[e|E]+(\d{2})/);
   if (match !== null) {
-    return { filename: file, s: match[1], e: match[2] }
+    return { filename: file, s: match[1], e: match[2] };
   }
   return null;
 }
@@ -41,27 +46,27 @@ function rename(ep) {
   fs.renameSync(path.join(cwd, ep.filename), path.join(cwd, ep.newFilename));
 }
 
-var res = files
+function answer(str) {
+  var letter = str === '' || str === 'Y' ? 'Y' : 'n';
+  if (letter === 'Y') {
+    res.forEach(rename);
+  }
+  rl.close();
+}
+
+res = files
   .filter(filterMedia)
   .map(extract)
   .filter(filterParsed)
   .map(formatName);
 
 if (res.length > 0) {
-  res.forEach(prinResult);
-
-  var rl = readline.createInterface({
+  rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout
   });
-
-  rl.question('Is it ok? [Y/n] ', function(answer) {
-    answer = answer === '' || answer === 'Y' ? 'Y' : 'n';
-    rl.close();
-    if (answer === 'Y') {
-      res.forEach(rename);
-    }
-  });
+  res.forEach(prinResult);
+  rl.question('Is it ok? [Y/n] ', answer);
 } else {
   console.log('This dir does not contains any episodes');
 }

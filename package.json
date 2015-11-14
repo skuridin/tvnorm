@@ -2,7 +2,13 @@
   "name": "tvnorm",
   "version": "0.0.1",
   "description": "Normalize episodes filenames",
-  "keywords": ["cli", "batch", "rename", "files", "tv-shows"],
+  "keywords": [
+    "cli",
+    "batch",
+    "rename",
+    "files",
+    "tv-shows"
+  ],
   "author": {
     "name": "Evgeniy Skuridin",
     "email": "i@skurid.in",
@@ -17,10 +23,21 @@
     "email": "i@skurid.in",
     "url": "https://github.com/skuridin/tvnorm/issues"
   },
-  "files": ["index.js"],
+  "files": [
+    "index.js"
+  ],
   "main": "index.js",
-  "bin": { "tvnorm": "index.js" },
+  "bin": {
+    "tvnorm": "index.js"
+  },
+  "scripts": {
+    "lint": "eslint index.js"
+  },
   "dependencies": {
     "colors": "^1.1.2"
+  },
+  "devDependencies": {
+    "eslint": "^1.9.0",
+    "eslint-config-airbnb": "^1.0.0"
   }
 }

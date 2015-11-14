@@ -1,0 +1,7 @@
+{
+  "rules": {
+    "no-console": 0,
+    "comma-dangle": [2, "never"]
+  },
+  "extends": "airbnb/legacy"
+}
