@@ -16,16 +16,24 @@ if (!fs.statSync(cwd).isDirectory()) {
 
 files = fs.readdirSync(cwd);
 
+function pad(num, size) {
+  var s = num+"";
+  while (s.length < size) s = "0" + s;
+  return s;
+}
+
 function filterMedia(file) {
   return file.toLowerCase().match(/\.(avi|mp4|mkv|mov|flv|wmv)$/);
 }
 
 function extract(file) {
-  var match = file.match(/[s|S]{1}(\d+).*[e|E]+(\d{2})/);
-  if (match !== null) {
-    return { filename: file, s: match[1], e: match[2] };
+  var match1 = file.match(/[s|S]{1}(\d+).*[e|E]+(\d+)/);
+  var match2 = file.match(/(\d+)[x|X](\d+)/);
+  var result = match1 || match2 || null;
+  if (result !== null) {
+    return { filename: file, s: pad(result[1], 2), e: pad(result[2], 2) };
   }
-  return null;
+  return result;
 }
 
 function filterParsed(ep) {
@@ -50,9 +58,9 @@ function answer(str) {
   var letter = str === '' || str === 'Y' ? 'Y' : 'n';
   if (letter === 'Y') {
     res.forEach(rename);
-    console.log('Completed')
+    console.log('Completed');
   } else {
-    console.log('Nothing changed')
+    console.log('Nothing changed');
   }
   rl.close();
 }
