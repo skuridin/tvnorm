@@ -1,6 +1,12 @@
 # tvnorm
 Normalize episodes filenames
 
+## Installation
+`npm i -g tvnorm`
+
+## Usage
+`tvnorm [path]`
+
 ## Example:
 
 ```bash
