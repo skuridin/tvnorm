@@ -2,13 +2,12 @@
 Normalize episodes filenames
 
 ## Installation
-`npm i -g tvnorm`
+`$ npm i -g tvnorm`
 
 ## Usage
-`tvnorm [path]`
+`$ tvnorm [path]`
 
-## Example:
-
+## Example
 ```bash
 $ tvnorm /Volumes/Torrents/TVSHOWS/Narcos
 => Narcos.S01E01.720p.WEBRiP.x265.ShAaNiG.mkv -> s01e01.mkv
